@@ -1,0 +1,27 @@
+{
+  "variables": {
+    "api_token": "{{ env `API_TOKEN` }}"
+  },
+
+  "builders": [
+    {
+      "type": "digitalocean",
+      "api_token": "{{ user `api_token` }}",
+      "image": "ubuntu-20-04-x64",
+      "region": "nyc1",
+      "size": "512mb",
+      "ssh_username": "root"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "server/wg0.conf",
+      "destination": "/tmp/wg0.conf"
+    },
+    {
+      "type": "shell",
+      "script": "server/script.sh"
+    }
+  ]
+}
