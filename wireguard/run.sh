@@ -6,7 +6,6 @@ usage() {
   echo "Usage: $0 [-c <number>]" 1>&2
   echo
   echo " -c Specifiy number of WireGuard clients to generate. Default 10"
-  exit 1
 }
 
 CLIENT_COUNT=10
