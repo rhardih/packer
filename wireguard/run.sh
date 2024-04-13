@@ -99,6 +99,19 @@ done
 
 popd
 
+set +e
+
+# First check if the digital ocean plugin is installed
+packer plugins installed | grep digitalocean
+
+if [ $? -ne 0 ]; then
+  echo "Digital Ocean plugin not installed with packer. Installing..."
+  packer plugins install github.com/digitalocean/digitalocean
+  echo "Done!"
+fi
+
+set -e
+
 # Run packer
 packer build -machine-readable wireguard.json | tee build.output
 
