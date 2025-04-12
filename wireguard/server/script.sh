@@ -18,7 +18,7 @@ set -euxo pipefail
 export DEBIAN_FRONTEND=noninteractive
 
 # Install WireGuard
-apt update
+apt -y update
 apt -yq upgrade
 apt -y install wireguard
 
