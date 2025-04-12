@@ -171,3 +171,7 @@ else
   # the newly created droplet
   gsed -i "s/{SERVER-IP}/$DROPLET_IP/g" client-configs/*
 fi
+
+# Remove the snapshot again to avoid the cost of storing it
+curl -X DELETE -H 'Authorization: Bearer '"$API_TOKEN"'' \
+  "https://api.digitalocean.com/v2/snapshots/$IMAGE_ID" | tee curl-2.output
